@@ -1,4 +1,6 @@
+import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:ecommerce_app_provider/core/routes.dart';
+import 'package:ecommerce_app_provider/views/app_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,9 +24,12 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Shop App',
-        navigatorKey: NavigationService.navigatorKey, // << ربط الـ navigator بالـ NavigationService
+        title: 'ECommerce App',
+        theme: ThemeData(scaffoldBackgroundColor: AppColors.backgroundColor),
+        navigatorKey: NavigationService
+            .navigatorKey, // << ربط الـ navigator بالـ NavigationService
         initialRoute: AppRoutes.home,
+        home: AppScreens(),
         onGenerateRoute: AppRoutes.generateRoute,
       ),
     );
