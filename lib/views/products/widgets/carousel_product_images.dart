@@ -17,7 +17,7 @@ class CarouselProductImages extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 250,
+          height: 200,
           child: PageView.builder(
             onPageChanged: onchange,
             itemBuilder: (context, index) => Image.asset(images),
@@ -26,7 +26,7 @@ class CarouselProductImages extends StatelessWidget {
             scrollBehavior: ScrollBehavior(),
           ),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 15),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
