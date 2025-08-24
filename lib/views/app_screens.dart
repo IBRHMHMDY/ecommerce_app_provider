@@ -15,7 +15,8 @@ class AppScreens extends StatefulWidget {
 }
 
 class _AppScreensState extends State<AppScreens> {
-  int currentIndex = 2; 
+  int currentIndex = 2;
+
   final List<Widget> screens = [
     MenuScreen(),
     FavoritesScreen(),

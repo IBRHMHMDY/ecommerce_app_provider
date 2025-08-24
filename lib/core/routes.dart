@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_provider/models/product_model.dart';
 import 'package:ecommerce_app_provider/views/app_screens.dart';
 import 'package:ecommerce_app_provider/views/products/product_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +12,14 @@ class AppRoutes {
   static const String home = '/';
   static const String productDetails = '/product-details';
   static const String cart = '/cart';
-
   // مولد الـ routes
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final product = settings.arguments as ProductModel;
     switch (settings.name) {
       case home:
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case productDetails:
-        // final args = settings.arguments;
-        return MaterialPageRoute(builder: (_) => ProductDetailsScreen());
+        return MaterialPageRoute(builder: (_) => ProductDetailsScreen(product: product));
       case cart:
         return MaterialPageRoute(builder: (_) => CartScreen());
 
