@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:ecommerce_app_provider/models/product_model.dart';
+import 'package:ecommerce_app_provider/views/products/widgets/add_to_cart_button.dart';
 import 'package:ecommerce_app_provider/views/products/widgets/app_bar_product_details.dart';
 import 'package:ecommerce_app_provider/views/products/widgets/carousel_product_images.dart';
 import 'package:ecommerce_app_provider/views/products/widgets/row_info.dart';
@@ -148,6 +149,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ],
         ),
       ),
+      floatingActionButton: AddToCartButton(product: widget.product,),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

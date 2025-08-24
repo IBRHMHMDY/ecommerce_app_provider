@@ -1,8 +1,9 @@
+import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:flutter/material.dart';
 
 class TabProductDetails extends StatelessWidget {
   const TabProductDetails({super.key});
-
+  final int currentTab = 0;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -11,9 +12,14 @@ class TabProductDetails extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           TabBar(
-            labelColor: Colors.orange,
-            unselectedLabelColor: Colors.grey,
-            indicatorColor: Colors.orange,
+            indicatorPadding: EdgeInsets.all(5),
+            indicatorSize: TabBarIndicatorSize.tab,
+            labelColor: Colors.white,
+            indicator: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            dividerColor: Colors.transparent,
             tabs: [
               Tab(text: "Description"),
               Tab(text: "Specifications"),
