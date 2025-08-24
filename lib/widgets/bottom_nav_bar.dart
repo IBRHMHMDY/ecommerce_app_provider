@@ -15,7 +15,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return BottomAppBar(
       elevation: 5,
-      height: 80,
+      height: 60,
       color: AppColors.accentColor,
       shape: CircularNotchedRectangle(),
       notchMargin: 10,

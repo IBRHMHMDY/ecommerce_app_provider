@@ -12,7 +12,7 @@ class SearchBarHome extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -33,7 +33,7 @@ class SearchBarHome extends StatelessWidget {
             ),
             Container(
               width: 1.5,
-              height: 40,
+              height: 30,
               decoration: BoxDecoration(
                 border: Border.all(color: AppColors.textLight),
               ),

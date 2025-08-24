@@ -3,7 +3,6 @@ import 'package:ecommerce_app_provider/core/routes.dart';
 import 'package:ecommerce_app_provider/views/app_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'services/navigation_service.dart';
 import 'controllers/product_controller.dart';
 import 'controllers/cart_controller.dart';
@@ -26,8 +25,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ECommerce App',
         theme: ThemeData(scaffoldBackgroundColor: AppColors.backgroundColor),
-        navigatorKey: NavigationService
-            .navigatorKey,
+        navigatorKey: NavigationService.navigatorKey,
         initialRoute: AppRoutes.home,
         home: AppScreens(),
         onGenerateRoute: AppRoutes.generateRoute,

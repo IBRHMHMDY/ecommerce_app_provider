@@ -1,4 +1,4 @@
-import 'package:ecommerce_app_provider/services/categories_data.dart';
+import 'package:ecommerce_app_provider/services/data/categories_data.dart';
 import 'package:flutter/material.dart';
 
 class ListCategories extends StatelessWidget {
@@ -6,13 +6,14 @@ class ListCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: SizedBox(
-        height: 120,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => Column(
+    return SizedBox(
+      height: 100,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {},
+          borderRadius: BorderRadius.circular(15),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
@@ -33,9 +34,9 @@ class ListCategories extends StatelessWidget {
               ),
             ],
           ),
-          separatorBuilder: (context, index) => SizedBox(width: 20),
-          itemCount: categories.length,
         ),
+        separatorBuilder: (context, index) => SizedBox(width: 20),
+        itemCount: categories.length,
       ),
     );
   }

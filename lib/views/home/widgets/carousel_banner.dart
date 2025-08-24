@@ -1,5 +1,5 @@
 import 'package:ecommerce_app_provider/core/constants.dart';
-import 'package:ecommerce_app_provider/services/carousel_images_data.dart';
+import 'package:ecommerce_app_provider/services/data/carousel_images_data.dart';
 import 'package:flutter/material.dart';
 
 class CarouselBanner extends StatefulWidget {
