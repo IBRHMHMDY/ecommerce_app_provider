@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_provider/views/home/widgets/list_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app_provider/views/home/widgets/app_bar_home.dart';
 import 'package:ecommerce_app_provider/views/home/widgets/search_bar_home.dart';
@@ -20,7 +21,8 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 15),
               CarouselBanner(),
               SizedBox(height: 15),
-              
+              ListCategories(),
+
             ],
           ),
         ),
@@ -28,4 +30,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
