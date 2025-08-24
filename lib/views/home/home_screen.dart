@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:ecommerce_app_provider/views/home/widgets/app_bar_home.dart';
 import 'package:ecommerce_app_provider/views/home/widgets/search_bar_home.dart';
-import 'package:flutter/material.dart';
+import 'package:ecommerce_app_provider/views/home/widgets/carousel_banner.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,8 +15,12 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               AppBarHome(),
-              SizedBox(height: 15,),
+              SizedBox(height: 15),
               SearchBarHome(),
+              SizedBox(height: 15),
+              CarouselBanner(),
+              SizedBox(height: 15),
+              
             ],
           ),
         ),
@@ -23,6 +28,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
 

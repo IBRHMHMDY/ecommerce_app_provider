@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'ECommerce App',
         theme: ThemeData(scaffoldBackgroundColor: AppColors.backgroundColor),
         navigatorKey: NavigationService
-            .navigatorKey, // << ربط الـ navigator بالـ NavigationService
+            .navigatorKey,
         initialRoute: AppRoutes.home,
         home: AppScreens(),
         onGenerateRoute: AppRoutes.generateRoute,
