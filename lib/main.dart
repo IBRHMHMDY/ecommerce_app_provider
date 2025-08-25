@@ -4,7 +4,7 @@ import 'package:ecommerce_app_provider/views/app_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services/navigation_service.dart';
-import 'controllers/product_controller.dart';
+import 'controllers/favorite_controller.dart';
 import 'controllers/cart_controller.dart';
 
 void main() {
@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ProductController()),
         ChangeNotifierProvider(create: (_) => CartController()),
+        ChangeNotifierProvider(create: (_) => FavoriteController()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

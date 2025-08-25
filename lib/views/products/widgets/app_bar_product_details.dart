@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:ecommerce_app_provider/models/product_model.dart';
+import 'package:ecommerce_app_provider/widgets/back_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class AppBarProductDetails extends StatelessWidget {
@@ -15,12 +16,7 @@ class AppBarProductDetails extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios_new_sharp),
-        ),
+        BackIconButton(),
         Text(
           product.title,
           style: TextStyle(color: AppColors.textDark, fontSize: 16,fontWeight: FontWeight.bold),
