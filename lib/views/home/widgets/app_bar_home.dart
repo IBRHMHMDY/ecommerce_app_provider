@@ -18,12 +18,14 @@ class AppBarHome extends StatelessWidget {
               color: AppColors.accentColor,
               borderRadius: BorderRadius.circular(50),
             ),
-            child: Image.asset(
-              "assets/images/icon.png",
-              height: 20,
-              width: 20,
-              cacheHeight: 20,
-              cacheWidth: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Image.asset(
+                "assets/images/icon.png",
+                height: 25,
+                width: 25,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

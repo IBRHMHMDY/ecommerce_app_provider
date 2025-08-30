@@ -1,9 +1,15 @@
+import 'package:ecommerce_app_provider/controllers/cart_controller.dart';
 import 'package:ecommerce_app_provider/core/constants.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key, required this.currentIndex, required this.onTap});
+  const BottomNavBar({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+  });
   final int currentIndex;
   final Function(int) onTap;
   @override
@@ -49,16 +55,45 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
           ),
           SizedBox(width: 40),
-          IconButton(
-            onPressed: () => setState(() {
+          InkWell(
+            onTap: () => setState(() {
               widget.onTap(3);
             }),
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              size: 28,
-              color: widget.currentIndex == 3
-                  ? AppColors.primaryColor
-                  : AppColors.textLight,
+            child: Consumer<CartController>(
+              builder: (context, cartController, child) => Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Icon(
+                    cartController.cartCount > 0
+                        ? Icons.shopping_cart
+                        : Icons.shopping_cart_outlined,
+                    size: 28,
+                    color: widget.currentIndex == 3
+                        ? AppColors.primaryColor
+                        : AppColors.textLight,
+                  ),
+                  Positioned(
+                    right: -2,
+                    top: -8,
+                    child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: cartController.cartCount > 0 ? AppColors.primaryColor : Colors.transparent,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Text(
+                              cartController.cartCount.toString(),
+                              style: TextStyle(
+                                color: cartController.cartCount > 0? AppColors.backgroundColor : Colors.transparent,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w900
+                              ),
+                            ),
+                          )
+                        
+                  ),
+                ],
+              ),
             ),
           ),
           IconButton(

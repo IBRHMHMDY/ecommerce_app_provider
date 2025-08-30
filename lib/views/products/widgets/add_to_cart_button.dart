@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_provider/controllers/cart_controller.dart';
 import 'package:ecommerce_app_provider/core/constants.dart';
+import 'package:ecommerce_app_provider/models/cart_model.dart';
 import 'package:ecommerce_app_provider/models/product_model.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +13,13 @@ class AddToCartButton extends StatefulWidget {
 }
 
 class _AddToCartButtonState extends State<AddToCartButton> {
-  int quantity = 1;
+  int itemAmount = 1;
 
   @override
   Widget build(BuildContext context) {
     final provider = CartController.of(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: Container(
         height: 85,
         width: 350,
@@ -31,8 +32,10 @@ class _AddToCartButtonState extends State<AddToCartButton> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              /// --- Quantity Selector ---
               Container(
                 height: 50,
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.white, width: 2),
@@ -41,46 +44,69 @@ class _AddToCartButtonState extends State<AddToCartButton> {
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () => quantity != 1
-                          ? setState(() {
-                              quantity--;
-                            })
-                          : 1,
-                      icon: Icon(Icons.remove, color: Colors.white, size: 20),
+                      onPressed: () {
+                        if (itemAmount > 1) {
+                          setState(() => itemAmount--);
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.remove,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                     ),
                     Text(
-                      quantity.toString(),
-                      style: TextStyle(
+                      itemAmount.toString(),
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     IconButton(
-                      onPressed: () => setState(() {
-                        quantity++;
-                      }),
-                      icon: Icon(Icons.add, color: Colors.white, size: 20),
+                      onPressed: () => setState(() => itemAmount++),
+                      icon: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(width: 20),
+
+              const SizedBox(width: 20),
+
+              /// --- Add to Cart Button ---
               GestureDetector(
                 onTap: () {
-                  provider.toggleCart(widget.product);
-                  const snackBar = SnackBar(
-                    content: Text(
-                      "Added Succefully!",
+                  // Convert class: CartModel to item: CartItem
+                  final cartItem = CartModel(
+                    id: widget.product.id,
+                    title: widget.product.title,
+                    category: widget.product.category,
+                    image: widget.product.image,
+                    price: widget.product.price,
+                    quantity: itemAmount,
+                  );
+
+                  provider.btnAddToCart(cartItem);
+
+                  /// SnackBar
+                  final snackBar = SnackBar(
+                    showCloseIcon: true,
+                    backgroundColor: AppColors.textDark,
+                    content: const Text(
+                      "Added Successfully! 🛒",
                       style: TextStyle(
                         color: AppColors.backgroundColor,
-                        backgroundColor: AppColors.textDark,
-                        fontSize: 26,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    duration: Duration(seconds: 3),
+                    duration: const Duration(seconds: 2),
                   );
+
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Container(
@@ -91,7 +117,7 @@ class _AddToCartButtonState extends State<AddToCartButton> {
                     borderRadius: BorderRadius.circular(15),
                     color: AppColors.primaryColor,
                   ),
-                  child: Text(
+                  child: const Text(
                     "Add to Cart",
                     style: TextStyle(
                       color: Colors.white,
