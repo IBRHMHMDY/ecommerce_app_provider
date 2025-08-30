@@ -82,11 +82,18 @@ class _AddToCartButtonState extends State<AddToCartButton> {
                 onTap: () {
                   // Convert class: CartModel to item: CartItem
                   final cartItem = CartModel(
-                    id: widget.product.id,
-                    title: widget.product.title,
-                    category: widget.product.category,
-                    image: widget.product.image,
-                    price: widget.product.price,
+                    product: ProductModel(
+                      id: widget.product.id,
+                      title: widget.product.title,
+                      category: widget.product.category,
+                      image: widget.product.image,
+                      description: widget.product.description,
+                      price: widget.product.price,
+                      rating: widget.product.rating,
+                      review: widget.product.review,
+                      colors: widget.product.colors,
+                      quantity: widget.product.quantity,
+                    ),
                     quantity: itemAmount,
                   );
 

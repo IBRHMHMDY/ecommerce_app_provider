@@ -73,9 +73,12 @@ class _CartScreenState extends State<CartScreen> {
                                           ),
                                         ),
                                         padding: EdgeInsets.all(10),
-                                        child: Image.asset(
-                                          cartItems.image,
-                                          fit: BoxFit.cover,
+                                        child: GestureDetector(
+                                          onTap: () => Navigator.pushNamed(context, AppRoutes.productDetails,arguments: cartItems.product),
+                                          child: Image.asset(
+                                            cartItems.product.image,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       Padding(
@@ -88,7 +91,7 @@ class _CartScreenState extends State<CartScreen> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              cartItems.title,
+                                              cartItems.product.title,
                                               style: TextStyle(
                                                 color: AppColors.textDark,
                                                 fontSize: 20,
@@ -96,7 +99,7 @@ class _CartScreenState extends State<CartScreen> {
                                               ),
                                             ),
                                             Text(
-                                              cartItems.category,
+                                              cartItems.product.category,
                                               style: TextStyle(
                                                 color: AppColors.textLight,
                                                 fontSize: 16,
@@ -104,7 +107,7 @@ class _CartScreenState extends State<CartScreen> {
                                             ),
                                             SizedBox(height: 10),
                                             Text(
-                                              "\$${cartItems.price.toString()}",
+                                              "\$${cartItems.product.price.toString()}",
                                               style: TextStyle(
                                                 color: AppColors.textDark,
                                                 fontSize: 16,
@@ -161,7 +164,7 @@ class _CartScreenState extends State<CartScreen> {
                                             Text(
                                               provider
                                                   .getQuantity(
-                                                    itemsCart[index].id,
+                                                    itemsCart[index].product.id,
                                                   )
                                                   .toString(),
                                               style: const TextStyle(

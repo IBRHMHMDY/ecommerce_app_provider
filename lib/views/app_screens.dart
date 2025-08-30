@@ -36,6 +36,7 @@ class _AppScreensState extends State<AppScreens> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -47,7 +48,14 @@ class _AppScreensState extends State<AppScreens> {
 
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text("اضغط مرة أخرى للخروج"),
+              content: Text(
+                "Press Again to Exit",
+                style: TextStyle(
+                  color: AppColors.accentColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
               duration: Duration(seconds: 2),
             ),
           );
@@ -67,14 +75,16 @@ class _AppScreensState extends State<AppScreens> {
             });
           },
         ),
-        floatingActionButton: ButtonHome(
-          currentIndex: currentIndex,
-          onTap: (index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-        ),
+        floatingActionButton: isKeyboardOpen
+            ? null
+            : ButtonHome(
+                currentIndex: currentIndex,
+                onTap: (index) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+              ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );

@@ -59,41 +59,41 @@ class _BottomNavBarState extends State<BottomNavBar> {
             onTap: () => setState(() {
               widget.onTap(3);
             }),
-            child: Consumer<CartController>(
-              builder: (context, cartController, child) => Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Icon(
-                    cartController.cartCount > 0
-                        ? Icons.shopping_cart
-                        : Icons.shopping_cart_outlined,
-                    size: 28,
-                    color: widget.currentIndex == 3
-                        ? AppColors.primaryColor
-                        : AppColors.textLight,
-                  ),
-                  Positioned(
-                    right: -2,
-                    top: -8,
-                    child: Container(
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Icon(
+                  Icons.shopping_cart_outlined,
+                  size: 28,
+                  color: widget.currentIndex == 3
+                      ? AppColors.primaryColor
+                      : AppColors.textLight,
+                ),
+                Positioned(
+                right: -6,
+                top: -2,
+                child: Consumer<CartController>(
+                  builder: (context, cartController, child) {
+                    return cartController.cartCount > 0
+                        ? Container(
                             padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: cartController.cartCount > 0 ? AppColors.primaryColor : Colors.transparent,
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
                               shape: BoxShape.circle,
                             ),
                             child: Text(
                               cartController.cartCount.toString(),
-                              style: TextStyle(
-                                color: cartController.cartCount > 0? AppColors.backgroundColor : Colors.transparent,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w900
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
                               ),
                             ),
                           )
-                        
-                  ),
-                ],
+                        : const SizedBox();
+                  },
+                ),
               ),
+              ],
             ),
           ),
           IconButton(

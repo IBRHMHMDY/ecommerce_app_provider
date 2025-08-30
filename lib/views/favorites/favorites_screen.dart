@@ -70,7 +70,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                         ),
                                         padding: EdgeInsets.all(10),
                                         child: Image.asset(
-                                          cartItems.image,
+                                          cartItems.product.image,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -84,7 +84,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              cartItems.title,
+                                              cartItems.product.title,
                                               style: TextStyle(
                                                 color: AppColors.textDark,
                                                 fontSize: 20,
@@ -92,87 +92,19 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                               ),
                                             ),
                                             Text(
-                                              cartItems.category,
+                                              cartItems.product.category,
                                               style: TextStyle(
-                                                color: AppColors.textLight,
+                                                color: AppColors.textDark,
                                                 fontSize: 16,
                                               ),
                                             ),
                                             SizedBox(height: 10),
                                             Text(
-                                              "\$${cartItems.price.toString()}",
+                                              "\$${cartItems.product.price.toString()}",
                                               style: TextStyle(
                                                 color: AppColors.textDark,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 20,
-                                right: 15,
-                                child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        height: 35,
-                                        width: 110,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.accentColor,
-                                          borderRadius: BorderRadius.circular(
-                                            15,
-                                          ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            /// --- Quantity Selector ---
-                                            IconButton(
-                                              onPressed: () {
-                                                if (itemsCart[index].quantity >
-                                                    1) {
-                                                  provider.minusAmount(
-                                                    index,
-                                                    itemsCart,
-                                                  );
-                                                }
-                                              },
-                                              icon: const Icon(
-                                                Icons.remove,
-                                                color: AppColors.textDark,
-                                                size: 20,
-                                              ),
-                                            ),
-                                            Text(
-                                              provider
-                                                  .getQuantity(
-                                                    itemsCart[index].id,
-                                                  )
-                                                  .toString(),
-                                              style: const TextStyle(
-                                                color: AppColors.textDark,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            IconButton(
-                                              onPressed: () => provider
-                                                  .plusAmount(index, itemsCart),
-                                              icon: const Icon(
-                                                Icons.add,
-                                                color: AppColors.textDark,
-                                                size: 20,
                                               ),
                                             ),
                                           ],

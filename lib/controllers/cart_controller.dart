@@ -11,7 +11,7 @@ class CartController extends ChangeNotifier {
   
   /// Add To Cart Button
   void btnAddToCart(CartModel cartItem) {
-    final index = _cart.indexWhere((item) => item.id == cartItem.id);
+    final index = _cart.indexWhere((item) => item.product.id == cartItem.product.id);
     if (index != -1) {
       // if Product Exists > Increment Amount
       _cart[index].quantity += cartItem.quantity;
@@ -45,13 +45,13 @@ class CartController extends ChangeNotifier {
   /// Total Cart
   double get total => _cart.fold(
         0,
-        (sum, item) => sum + (item.price * item.quantity),
+        (sum, item) => sum + (item.product.price * item.quantity),
       );
   /// total with discount
   double get finalTotal => total - _discount;
 
   void applyCoupon(String code) {
-    /// Ex: Sava10 = Discount 10
+    /// Ex: Sava10 = Discount 10%
     if (code == "SAVE10") {
       _discount = 10;
     } else {
@@ -61,7 +61,7 @@ class CartController extends ChangeNotifier {
   }
   /// Get Amount per Product
   int getQuantity(int id) {
-  final index = _cart.indexWhere((item) => item.id == id);
+  final index = _cart.indexWhere((item) => item.product.id == id);
   if (index != -1) {
     return _cart[index].quantity;
   }
