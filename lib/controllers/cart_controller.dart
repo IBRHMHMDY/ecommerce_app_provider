@@ -6,14 +6,17 @@ class CartController extends ChangeNotifier {
   final List<CartModel> _cart = [];
   List<CartModel> get cart => _cart;
 
-  /// إضافة أو زيادة الكمية لو المنتج موجود
+  double _discount = 0; // قيمة الخصم
+  double get discount => _discount;
+  
+  /// Add To Cart Button
   void btnAddToCart(CartModel cartItem) {
     final index = _cart.indexWhere((item) => item.id == cartItem.id);
     if (index != -1) {
-      // المنتج موجود -> نزود الكمية
+      // if Product Exists > Increment Amount
       _cart[index].quantity += cartItem.quantity;
     } else {
-      // المنتج جديد -> نضيفه
+      // if Not Exists > add to Array
       _cart.add(cartItem);
     }
     notifyListeners();
@@ -39,10 +42,22 @@ class CartController extends ChangeNotifier {
     
     notifyListeners();
   }
+  /// Total Cart
+  double get total => _cart.fold(
+        0,
+        (sum, item) => sum + (item.price * item.quantity),
+      );
+  /// total with discount
+  double get finalTotal => total - _discount;
 
-  /// حساب المجموع الكلي
-  double get totalPrice {
-    return _cart.fold(0, (sum, item) => sum + (item.price * item.quantity));
+  void applyCoupon(String code) {
+    /// Ex: Sava10 = Discount 10
+    if (code == "SAVE10") {
+      _discount = 10;
+    } else {
+      _discount = 0;
+    }
+    notifyListeners();
   }
   /// Get Amount per Product
   int getQuantity(int id) {

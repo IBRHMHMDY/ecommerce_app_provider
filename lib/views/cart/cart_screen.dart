@@ -2,6 +2,7 @@ import 'package:ecommerce_app_provider/controllers/cart_controller.dart';
 import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:ecommerce_app_provider/core/routes.dart';
 import 'package:ecommerce_app_provider/views/cart/widgets/cart_empty.dart';
+import 'package:ecommerce_app_provider/views/cart/widgets/cart_summary.dart';
 import 'package:ecommerce_app_provider/widgets/back_icon_button.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,8 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  bool showSummary = false;
+  final TextEditingController couponController = TextEditingController();
   int itemAmount = 1;
   @override
   Widget build(BuildContext context) {
@@ -141,7 +144,8 @@ class _CartScreenState extends State<CartScreen> {
                                             /// --- Quantity Selector ---
                                             IconButton(
                                               onPressed: () {
-                                                if (itemsCart[index].quantity > 1) {
+                                                if (itemsCart[index].quantity >
+                                                    1) {
                                                   provider.minusAmount(
                                                     index,
                                                     itemsCart,
@@ -205,6 +209,7 @@ class _CartScreenState extends State<CartScreen> {
                         },
                       ),
               ),
+              CartSummary(showSummary: showSummary, couponController: couponController),
             ],
           ),
         ),
