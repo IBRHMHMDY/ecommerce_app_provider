@@ -1,20 +1,28 @@
+import 'package:ecommerce_app_provider/controllers/favorite_controller.dart';
 import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:ecommerce_app_provider/core/routes.dart';
 import 'package:ecommerce_app_provider/models/product_model.dart';
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   final ProductModel product;
   const ProductCard({super.key, required this.product});
 
   @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  @override
   Widget build(BuildContext context) {
+    final provider = FavoriteController.of(context);
+    
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
           context,
           AppRoutes.productDetails,
-          arguments: product,
+          arguments: widget.product,
         );
       },
       child: Stack(
@@ -32,7 +40,7 @@ class ProductCard extends StatelessWidget {
                     vertical: 15,
                   ),
                   child: Image.asset(
-                    product.image,
+                    widget.product.image,
                     fit: BoxFit.cover,
                     height: 100,
                     width: double.infinity,
@@ -40,7 +48,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  product.title,
+                  widget.product.title,
                   style: TextStyle(
                     color: AppColors.textDark,
                     fontSize: 15,
@@ -56,7 +64,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "\$${product.price.toString()}",
+                        "\$${widget.product.price.toString()}",
                         style: TextStyle(
                           color: AppColors.textDark,
                           fontSize: 14,
@@ -66,13 +74,13 @@ class ProductCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: List.generate(
-                          product.colors.length,
+                          widget.product.colors.length,
                           (index) => Container(
                             margin: EdgeInsets.symmetric(horizontal: 2),
                             width: 18,
                             height: 18,
                             decoration: BoxDecoration(
-                              color: product.colors[index],
+                              color: widget.product.colors[index],
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -88,7 +96,9 @@ class ProductCard extends StatelessWidget {
             top: 0,
             right: 0,
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                provider.toggleFavorites(widget.product);
+              },
               child: Container(
                 height: 30,
                 width: 30,
@@ -100,14 +110,14 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 child: Icon(
-                  Icons.favorite_outline,
-                  color: AppColors.accentColor,
+                 provider.isFavorite(widget.product) ? Icons.favorite : Icons.favorite_outline,
+                  color: Colors.white,
                   size: 16,
                 ),
               ),
             ),
           ),
-        ],
+        ]
       ),
     );
   }

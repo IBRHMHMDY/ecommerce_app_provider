@@ -1,4 +1,4 @@
-import 'package:ecommerce_app_provider/controllers/cart_controller.dart';
+import 'package:ecommerce_app_provider/controllers/favorite_controller.dart';
 import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:ecommerce_app_provider/core/routes.dart';
 import 'package:ecommerce_app_provider/views/favorites/widgets/favorites_empty.dart';
@@ -15,8 +15,8 @@ class FavoritesScreen extends StatefulWidget {
 class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
-    final provider = CartController.of(context);
-    final itemsCart = provider.cart;
+    final provider = FavoriteController.of(context);
+    final products = provider.favorites;
     return Scaffold(
       backgroundColor: AppColors.accentColor,
       body: SafeArea(
@@ -39,12 +39,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: provider.cartCount == 0
+                child: provider.favCount == 0
                     ? FavoritesEmpty()
                     : ListView.builder(
-                        itemCount: itemsCart.length,
+                        itemCount: products.length,
                         itemBuilder: (context, index) {
-                          final cartItems = itemsCart[index];
+                          final favItem = products[index];
                           return Stack(
                             children: [
                               Padding(
@@ -70,7 +70,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                         ),
                                         padding: EdgeInsets.all(10),
                                         child: Image.asset(
-                                          cartItems.product.image,
+                                          favItem.image,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -84,7 +84,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              cartItems.product.title,
+                                              favItem.title,
                                               style: TextStyle(
                                                 color: AppColors.textDark,
                                                 fontSize: 20,
@@ -92,7 +92,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                               ),
                                             ),
                                             Text(
-                                              cartItems.product.category,
+                                              favItem.category,
                                               style: TextStyle(
                                                 color: AppColors.textDark,
                                                 fontSize: 16,
@@ -100,7 +100,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                             ),
                                             SizedBox(height: 10),
                                             Text(
-                                              "\$${cartItems.product.price.toString()}",
+                                              "\$${favItem.price.toString()}",
                                               style: TextStyle(
                                                 color: AppColors.textDark,
                                                 fontSize: 16,
@@ -119,11 +119,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(5),
                                   child: IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        provider.removeFromCart(index);
-                                      });
-                                    },
+                                    onPressed: ()=> provider.removeFromFavorites(products[index]),
                                     icon: Icon(
                                       Icons.delete,
                                       size: 20,

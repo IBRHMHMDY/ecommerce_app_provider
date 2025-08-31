@@ -212,7 +212,8 @@ class _CartScreenState extends State<CartScreen> {
                         },
                       ),
               ),
-              CartSummary(showSummary: showSummary, couponController: couponController),
+              if (provider.cartCount > 0)
+                CartSummary(showSummary: showSummary, couponController: couponController),
             ],
           ),
         ),
