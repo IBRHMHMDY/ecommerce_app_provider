@@ -35,8 +35,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     onchange: (index) => setState(() {
                       currentImage = index;
                     }),
-                    images: widget.product.image,
+                    image: widget.product.image,
                     currentImage: currentImage,
+                    heroTag: widget.product.id.toString(),
                   ),
                 ],
               ),
@@ -137,19 +138,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10,),
-                      Expanded(
-                        child: TabProductDetails()),
+                      SizedBox(height: 10),
+                      Expanded(child: TabProductDetails()),
                     ],
                   ),
                 ),
               ),
             ),
-                     
           ],
         ),
       ),
-      floatingActionButton: AddToCartButton(product: widget.product,),
+      floatingActionButton: AddToCartButton(product: widget.product),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

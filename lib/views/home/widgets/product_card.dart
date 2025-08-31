@@ -16,7 +16,6 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     final provider = FavoriteController.of(context);
-    
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
@@ -39,11 +38,17 @@ class _ProductCardState extends State<ProductCard> {
                     horizontal: 10,
                     vertical: 15,
                   ),
-                  child: Image.asset(
-                    widget.product.image,
-                    fit: BoxFit.cover,
-                    height: 100,
-                    width: double.infinity,
+                  child: Hero(
+                    tag: widget.product.id.toString(),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        widget.product.image,
+                        fit: BoxFit.cover,
+                        height: 120,
+                        width: double.infinity,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 5),
@@ -54,8 +59,6 @@ class _ProductCardState extends State<ProductCard> {
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
-                  softWrap: true,
-                  overflow: TextOverflow.visible,
                 ),
                 SizedBox(height: 10),
                 Padding(
@@ -110,14 +113,16 @@ class _ProductCardState extends State<ProductCard> {
                   ),
                 ),
                 child: Icon(
-                 provider.isFavorite(widget.product) ? Icons.favorite : Icons.favorite_outline,
+                  provider.isFavorite(widget.product)
+                      ? Icons.favorite
+                      : Icons.favorite_outline,
                   color: Colors.white,
                   size: 16,
                 ),
               ),
             ),
           ),
-        ]
+        ],
       ),
     );
   }

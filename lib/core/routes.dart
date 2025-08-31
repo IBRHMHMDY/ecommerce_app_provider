@@ -19,7 +19,9 @@ class AppRoutes {
       case home:
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case productDetails:
-        return MaterialPageRoute(builder: (_) => ProductDetailsScreen(product: product));
+        return MaterialPageRoute(
+          builder: (_) => ProductDetailsScreen(product: product),
+        );
       case cart:
         return MaterialPageRoute(builder: (_) => CartScreen());
 
