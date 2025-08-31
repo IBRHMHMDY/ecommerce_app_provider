@@ -119,7 +119,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(5),
                                   child: IconButton(
-                                    onPressed: ()=> provider.removeFromFavorites(products[index]),
+                                    onPressed: () => provider
+                                        .removeFromFavorites(products[index]),
                                     icon: Icon(
                                       Icons.delete,
                                       size: 20,

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_provider/controllers/favorite_controller.dart';
 import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:ecommerce_app_provider/core/routes.dart';
 import 'package:ecommerce_app_provider/models/product_model.dart';
@@ -11,9 +12,9 @@ class AppBarProductDetails extends StatelessWidget {
   });
 
   final ProductModel product;
-
   @override
   Widget build(BuildContext context) {
+  final provider = FavoriteController.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -26,13 +27,15 @@ class AppBarProductDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                
+              },
               icon: Icon(Icons.share_outlined),
             ),
             SizedBox(width: 3),
             IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.favorite_outline),
+              onPressed: ()=>provider.toggleFavorites(product),
+              icon: Icon(provider.isFavorite(product) ? Icons.favorite : Icons.favorite_outline,color: provider.isFavorite(product) ? AppColors.primaryColor : Colors.black),
             ),
           ],
         ),

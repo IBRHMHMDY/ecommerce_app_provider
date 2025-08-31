@@ -1,11 +1,10 @@
 import 'package:ecommerce_app_provider/core/constants.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class ButtonHome extends StatefulWidget {
-  ButtonHome({super.key, required this.currentIndex, required this.onTap});
-  int currentIndex;
-  Function onTap;
+  const ButtonHome({super.key, required this.currentIndex, required this.onTap});
+  final int currentIndex;
+  final Function onTap;
   @override
   State<ButtonHome> createState() => _ButtonHomeState();
 }
